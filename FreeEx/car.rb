@@ -1,5 +1,5 @@
 class Car
-  def initialize(brand, speed = 0)
+  def initialize(brand)
     @brand = brand
     @speed = 0
   end
@@ -13,47 +13,37 @@ class Car
     @brand
   end
 
-#attr_accessor de speed mostrando en su lugar sus métodos explícitos
-  # def speed=(value)
-  #   @speed = speed
-  # end
-  #Retorna speed getter
   def speed
     @speed
   end
 
-#Retorna incremento de speed en x
   def accelerate(number)
-    @speed = @speed + number
-    @speed
+    @speed += number
   end
 
-#Retorna decrecimiento de speed en x
   def brake(number)
-    @speed = @speed - number
-    @speed
+    @speed -= number
   end
 
-#Retorna speed = 0
   def stop
     @speed = 0
   end
 
-#Retorna true si el coche tiene speed y false si no tiene (Creo que estoy devolviendo strings, no booleanos reales. No me salía la sintaxi,
-#pero lo he intentado solucinar así jeje)
   def running?
-    @speed == 0 ? "False" : "True"
-  end
-
-#Renorna brand y stopped si el coche está detenido o el brand y su velocidad si no lo está
-  def status
-    if @speed == 0
-      print "#{@brand} stopped"
+    if @speed > 0
+      true
     else
-      print "#{@brand} running at #{@speed} km/h"
+      false
     end
   end
 
+  def status
+    if running? == true
+      "#{@brand} running at #{@speed} km/h"
+    else
+      "#{@brand} stopped"
+    end
+  end
 end
 
 car1 = Car.new("Ferrari")
